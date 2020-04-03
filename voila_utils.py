@@ -1,6 +1,4 @@
-import aiohttp
-import asyncio
-
+import urllib.request
 from fastai2.basics import *
 from fastai2.vision.all import *
 
@@ -21,11 +19,11 @@ def download_file(url, dest):
     if dest.exists(): 
         logger.debug('ML Model exists, skipping download')
         return
-    with aiohttp.ClientSession() as session:
-        with session.get(url) as response:
-            data = response.read()
-            with open(dest, 'wb') as f:
-                f.write(data)
+    response = urllib.request.urlopen(url)    
+    #data = response.read()
+    with open(dest, 'wb') as f:
+        #f.write(data)
+        f.write(response)
 
 
 def setup_learner():
