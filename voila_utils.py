@@ -19,11 +19,12 @@ def download_file(url, dest):
     if dest.exists(): 
         logger.debug('ML Model exists, skipping download')
         return
-    response = urllib.request.urlopen(url)    
-    data = response.read()
-    with open(dest, 'wb') as f:
-        f.write(data)
-        
+    
+    with urllib.request.urlopen(url) as response:
+        data = response.read()        
+        with open(dest, 'wb') as f:
+            f.write(data)
+            
 
 
 def setup_learner():
