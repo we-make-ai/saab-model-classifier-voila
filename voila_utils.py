@@ -20,10 +20,10 @@ def download_file(url, dest):
         logger.debug('ML Model exists, skipping download')
         return
     response = urllib.request.urlopen(url)    
-    #data = response.read()
+    data = response.read()
     with open(dest, 'wb') as f:
-        #f.write(data)
-        f.write(response)
+        f.write(data)
+        
 
 
 def setup_learner():
